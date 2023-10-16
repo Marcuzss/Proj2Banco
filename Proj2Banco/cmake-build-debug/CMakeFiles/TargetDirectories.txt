@@ -1,0 +1,3 @@
+C:/Users/uniemzelenato/CLionProjects/Proj2Banco/cmake-build-debug/CMakeFiles/Proj2Banco.dir
+C:/Users/uniemzelenato/CLionProjects/Proj2Banco/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/uniemzelenato/CLionProjects/Proj2Banco/cmake-build-debug/CMakeFiles/rebuild_cache.dir
