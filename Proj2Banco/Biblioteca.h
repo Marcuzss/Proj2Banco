@@ -18,3 +18,6 @@ void extrato(Cliente *clientes, int numClientes);
 void transferencia(Cliente *clientes, int numClientes);
 
 #endif
+
+//A biblioteca "CABECALHO_H" contém a definição de uma struct chamada "Cliente" e uma série de funções relacionada de controle de clientes
+//e suas contas. Essas funções permitem adicionar um novo cliente, remover um cliente, listar todos os clientes, etc.
