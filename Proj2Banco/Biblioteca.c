@@ -36,3 +36,5 @@ void debito(Cliente *clientes, int numClientes) {
     printf("CPF ou senha incorretos.\n");
 }
 
+// Tem o objetivo de permitir que os clientes realizem retiradas de dinheiro (débitos) de suas contas, diferenciando os tipos de contas
+//e dependendo do tipo a função desconta um valor respectivo a sua variante de conta.
