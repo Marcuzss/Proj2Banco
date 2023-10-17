@@ -18,3 +18,6 @@ void apagaCliente(Cliente *clientes, int *numClientes) {
 
     printf("CPF não encontrado.\n");
 }
+
+//Esta função remove um cliente com base no CPF fornecido pelo usuário. 
+//A função procura pelo array do CPF, encontra  e remove o cliente e atualiza a lista de clientes
