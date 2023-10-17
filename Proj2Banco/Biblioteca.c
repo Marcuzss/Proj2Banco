@@ -19,3 +19,4 @@ void deposito(Cliente *clientes, int numClientes) {
     printf("CPF não encontrado.\n");
 }
 
+//Esta função recebe o CPF do cliente desejado para realizar o depósito, e seu valor de depósito desejado.
