@@ -26,3 +26,6 @@ void novoCliente(Cliente *clientes, int *numClientes) {
 
     printf("Novo cliente cadastrado com sucesso.\n");
 }
+
+//A função `novoCliente` recebe dois parâmetros: - `Cliente *clientes`: Um ponteiro para uma matriz de estruturas do tipo `Cliente`,
+//que contém informações sobre os clientes, como nome, CPF, saldo , tipo de conta e senha.
