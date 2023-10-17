@@ -8,3 +8,4 @@ void listarClientes(Cliente *clientes, int numClientes) {
         printf("---------------\n");
     }
 }
+// A função tem a finalidade de exibir as informações de todos os clientes cadastrados no sistema.
