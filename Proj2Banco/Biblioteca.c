@@ -34,3 +34,5 @@ void transferencia(Cliente *clientes, int numClientes) {
     }
 }
 
+//Esta função recebe o CPF do destinatário e remetente e recebe o valor desejado a ser tranferido para a outra conta, e caso o CPF
+//esteja errado ou não tenha o valor na conta para fazer a tranferência exibe a mensagem de erro.
