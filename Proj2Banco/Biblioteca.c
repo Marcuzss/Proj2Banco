@@ -9,7 +9,7 @@ void extrato(Cliente *clientes, int numClientes) {
     int i;
     for (i = 0; i < numClientes; i++) {
         if (strcmp(clientes[i].cpf, cpf) == 0 && strcmp(clientes[i].senha, senha) == 0) {
-             char nomeArquivo[100];
+            char nomeArquivo[100];
             printf("Digite o nome do arquivo para salvar o extrato: ");
             scanf(" %[^\n]", nomeArquivo);
 
@@ -20,7 +20,14 @@ void extrato(Cliente *clientes, int numClientes) {
             }
 
             fprintf(arquivo, "Extrato do cliente: %s\n", clientes[i].nome);
-            fprintf(arquivo, "--------------------\n");
+              for (int j = 0; j < clientes[i].numOperacoes; j++) {
+                fprintf(arquivo, "Operação %d\n", j + 1);
+                fprintf(arquivo, "Tipo: %s\n", clientes[i].operacoes[j].tipo);
+                fprintf(arquivo, "Valor: %.2lf\n", clientes[i].operacoes[j].valor);
+                fprintf(arquivo, "Tarifa: %.2lf\n", clientes[i].operacoes[j].tarifa);
+                fprintf(arquivo, "Saldo após operação: %.2lf\n", clientes[i].operacoes[j].saldoApos);
+                
+            }
 
             fclose(arquivo);
             printf("Extrato salvo com sucesso.\n");
@@ -30,3 +37,4 @@ void extrato(Cliente *clientes, int numClientes) {
 
     printf("CPF ou senha incorretos.\n");
 }
+// Valida CPF e senha, salva extrato.
