@@ -2,25 +2,13 @@ void deposito(Cliente *clientes, int numClientes) {
     char cpf[12];
     double valor;
 
-
     printf("Digite o CPF do cliente: ");
     scanf(" %[^\n]", cpf);
-
-void debito(Cliente *clientes, int numClientes) {
-    char cpf[12], senha[20];
-    double valor;
-
-    printf("Digite o CPF do cliente: ");
-    scanf(" %[^\n]", cpf);
-    printf("Digite a senha: ");
-    scanf(" %[^\n]", senha);
-
     printf("Digite o valor: ");
     scanf("%lf", &valor);
 
     int i;
     for (i = 0; i < numClientes; i++) {
-
         if (strcmp(clientes[i].cpf, cpf) == 0) {
             clientes[i].saldo += valor;
             
@@ -30,39 +18,14 @@ void debito(Cliente *clientes, int numClientes) {
             clientes[i].operacoes[clientes[i].numOperacoes].saldoApos = clientes[i].saldo;
             clientes[i].numOperacoes++;
             printf("Depósito realizado com sucesso.\n");
+            return;
+        }
+    }
 
-        if (strcmp(clientes[i].cpf, cpf) == 0 && strcmp(clientes[i].senha, senha) == 0) {
-            if (strcmp(clientes[i].tipoConta, "comum") == 0) {
-                if (valor <= clientes[i].saldo + 1000) {
-                    double tarifa = valor * 0.05;
-                    clientes[i].saldo -= (valor + tarifa);
-                    
-                    strcpy(clientes[i].operacoes[clientes[i].numOperacoes].tipo, "Débito");
-                    clientes[i].operacoes[clientes[i].numOperacoes].valor = valor;
-                    clientes[i].operacoes[clientes[i].numOperacoes].tarifa = tarifa;
-                    clientes[i].operacoes[clientes[i].numOperacoes].saldoApos = clientes[i].saldo;
-                    clientes[i].numOperacoes++;
-                      printf("Débito realizado com sucesso.\n");
-                } else {
-                    printf("Saldo insuficiente.\n");
-                }
-            } else if (strcmp(clientes[i].tipoConta, "plus") == 0) {
-                if (valor <= clientes[i].saldo + 5000) {
-                    double tarifa = valor * 0.03;
-                    clientes[i].saldo -= (valor + tarifa);
-                    
-                    strcpy(clientes[i].operacoes[clientes[i].numOperacoes].tipo, "Débito");
-                    clientes[i].operacoes[clientes[i].numOperacoes].valor = valor;
-                    clientes[i].operacoes[clientes[i].numOperacoes].tarifa = tarifa;
-                    clientes[i].operacoes[clientes[i].numOperacoes].saldoApos = clientes[i].saldo;
-                    clientes[i].numOperacoes++;
-                      printf("Débito realizado com sucesso.\n");
-                } else {
-                    printf("Saldo insuficiente.\n");
-                }
-            } else {
-                printf("Tipo de conta inválido.\n");
-            }
+    printf("CPF não encontrado.\n");
+}
+
+//Esta função recebe o CPF do cliente desejado para realizar o depósito, e seu valor de depósito desejado.
 
 void listarClientes(Cliente *clientes, int numClientes) {
     int i;
@@ -97,22 +60,66 @@ void apagaCliente(Cliente *clientes, int *numClientes) {
 
     printf("CPF não encontrado.\n");
 }
+//Esta função remove um cliente com base no CPF fornecido pelo usuário. 
+//A função procura pelo array do CPF, encontra  e remove o cliente e atualiza a lista de clientes
 
-//Esta função recebe o CPF do cliente desejado para realizar o depósito, e seu valor de depósito desejado.
+void debito(Cliente *clientes, int numClientes) {
+    char cpf[12], senha[20];
+    double valor;
 
+    printf("Digite o CPF do cliente: ");
+    scanf(" %[^\n]", cpf);
+    printf("Digite a senha: ");
+    scanf(" %[^\n]", senha);
+    printf("Digite o valor: ");
+    scanf("%lf", &valor);
+
+    int i;
+    for (i = 0; i < numClientes; i++) {
+        if (strcmp(clientes[i].cpf, cpf) == 0 && strcmp(clientes[i].senha, senha) == 0) {
+            if (strcmp(clientes[i].tipoConta, "comum") == 0) {
+                if (valor <= clientes[i].saldo + 1000) {
+                    double tarifa = valor * 0.05;
+                    clientes[i].saldo -= (valor + tarifa);
+                    
+                    strcpy(clientes[i].operacoes[clientes[i].numOperacoes].tipo, "Débito");
+                    clientes[i].operacoes[clientes[i].numOperacoes].valor = valor;
+                    clientes[i].operacoes[clientes[i].numOperacoes].tarifa = tarifa;
+                    clientes[i].operacoes[clientes[i].numOperacoes].saldoApos = clientes[i].saldo;
+                    clientes[i].numOperacoes++;
+                      printf("Débito realizado com sucesso.\n");
+                } else {
+                    printf("Saldo insuficiente.\n");
+                }
+            } else if (strcmp(clientes[i].tipoConta, "plus") == 0) {
+                if (valor <= clientes[i].saldo + 5000) {
+                    double tarifa = valor * 0.03;
+                    clientes[i].saldo -= (valor + tarifa);
+                    
+                    strcpy(clientes[i].operacoes[clientes[i].numOperacoes].tipo, "Débito");
+                    clientes[i].operacoes[clientes[i].numOperacoes].valor = valor;
+                    clientes[i].operacoes[clientes[i].numOperacoes].tarifa = tarifa;
+                    clientes[i].operacoes[clientes[i].numOperacoes].saldoApos = clientes[i].saldo;
+                    clientes[i].numOperacoes++;
+                      printf("Débito realizado com sucesso.\n");
+                } else {
+                    printf("Saldo insuficiente.\n");
+                }
+            } else {
+                printf("Tipo de conta inválido.\n");
+            }
+            return;
+        }
+    }
 
     printf("CPF ou senha incorretos.\n");
 }
 
-
 // Tem o objetivo de permitir que os clientes realizem retiradas de dinheiro (débitos) de suas contas, diferenciando os tipos de contas
 //e dependendo do tipo a função desconta um valor respectivo a sua variante de conta.
 
-    printf("CPF não encontrado.\n");
-}
+   
 
-//Esta função remove um cliente com base no CPF fornecido pelo usuário. 
-//A função procura pelo array do CPF, encontra  e remove o cliente e atualiza a lista de clientes
 
 void novoCliente(Cliente *clientes, int *numClientes) {
     if (*numClientes == 1000) {
@@ -141,3 +148,42 @@ void novoCliente(Cliente *clientes, int *numClientes) {
 //A função `novoCliente` recebe dois parâmetros: - `Cliente *clientes`: Um ponteiro para uma matriz de estruturas do tipo `Cliente`,
 //que contém informações sobre os clientes, como nome, CPF, saldo , tipo de conta e senha.
 
+void extrato(Cliente *clientes, int numClientes) {
+    char cpf[12], senha[20];
+    printf("Digite o CPF do cliente: ");
+    scanf(" %[^\n]", cpf);
+    printf("Digite a senha: ");
+    scanf(" %[^\n]", senha);
+
+    int i;
+    for (i = 0; i < numClientes; i++) {
+        if (strcmp(clientes[i].cpf, cpf) == 0 && strcmp(clientes[i].senha, senha) == 0) {
+            char nomeArquivo[100];
+            printf("Digite o nome do arquivo para salvar o extrato: ");
+            scanf(" %[^\n]", nomeArquivo);
+
+            FILE *arquivo = fopen(nomeArquivo, "w");
+            if (arquivo == NULL) {
+                printf("Erro ao abrir o arquivo.\n");
+                return;
+            }
+
+            fprintf(arquivo, "Extrato do cliente: %s\n", clientes[i].nome);
+              for (int j = 0; j < clientes[i].numOperacoes; j++) {
+                fprintf(arquivo, "Operação %d\n", j + 1);
+                fprintf(arquivo, "Tipo: %s\n", clientes[i].operacoes[j].tipo);
+                fprintf(arquivo, "Valor: %.2lf\n", clientes[i].operacoes[j].valor);
+                fprintf(arquivo, "Tarifa: %.2lf\n", clientes[i].operacoes[j].tarifa);
+                fprintf(arquivo, "Saldo após operação: %.2lf\n", clientes[i].operacoes[j].saldoApos);
+                
+            }
+
+            fclose(arquivo);
+            printf("Extrato salvo com sucesso.\n");
+            return;
+        }
+    }
+
+    printf("CPF ou senha incorretos.\n");
+}
+// Valida CPF e senha, salva extrato.
