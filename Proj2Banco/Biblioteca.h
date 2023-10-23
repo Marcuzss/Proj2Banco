@@ -1,12 +1,19 @@
 #ifndef CABECALHO_H
 #define CABECALHO_H
-
 typedef struct {
     char nome[100];
     char cpf[12];
     char tipoConta[10];
     double saldo;
     char senha[20];
+
+struct Operacao {
+    char tipo[20];
+    double valor;
+     double tarifa;
+    double saldoApos;
+    } operacoes[100];
+    int numOperacoes; 
 } Cliente;
 
 void novoCliente(Cliente *clientes, int *numClientes);
