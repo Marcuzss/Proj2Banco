@@ -1,3 +1,7 @@
+// Integrantes da dupla: Marcus Vinicius Zelenato  RA:22.223.084-9
+//                       Joao Guilherme Rogante    RA:22.223.081-5
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "Biblioteca.h"
