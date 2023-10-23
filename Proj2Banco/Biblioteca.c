@@ -1,3 +1,10 @@
+void deposito(Cliente *clientes, int numClientes) {
+    char cpf[12];
+    double valor;
+
+
+    printf("Digite o CPF do cliente: ");
+    scanf(" %[^\n]", cpf);
 
 void debito(Cliente *clientes, int numClientes) {
     char cpf[12], senha[20];
@@ -7,11 +14,23 @@ void debito(Cliente *clientes, int numClientes) {
     scanf(" %[^\n]", cpf);
     printf("Digite a senha: ");
     scanf(" %[^\n]", senha);
+
     printf("Digite o valor: ");
     scanf("%lf", &valor);
 
     int i;
     for (i = 0; i < numClientes; i++) {
+
+        if (strcmp(clientes[i].cpf, cpf) == 0) {
+            clientes[i].saldo += valor;
+            
+            strcpy(clientes[i].operacoes[clientes[i].numOperacoes].tipo, "Depósito");
+            clientes[i].operacoes[clientes[i].numOperacoes].valor = valor;
+            clientes[i].operacoes[clientes[i].numOperacoes].tarifa = 0.0;
+            clientes[i].operacoes[clientes[i].numOperacoes].saldoApos = clientes[i].saldo;
+            clientes[i].numOperacoes++;
+            printf("Depósito realizado com sucesso.\n");
+
         if (strcmp(clientes[i].cpf, cpf) == 0 && strcmp(clientes[i].senha, senha) == 0) {
             if (strcmp(clientes[i].tipoConta, "comum") == 0) {
                 if (valor <= clientes[i].saldo + 1000) {
@@ -71,10 +90,15 @@ void apagaCliente(Cliente *clientes, int *numClientes) {
             }
             (*numClientes)--;
             printf("Cliente apagado com sucesso.\n");
-
             return;
         }
     }
+
+
+    printf("CPF não encontrado.\n");
+}
+
+//Esta função recebe o CPF do cliente desejado para realizar o depósito, e seu valor de depósito desejado.
 
 
     printf("CPF ou senha incorretos.\n");
@@ -116,3 +140,4 @@ void novoCliente(Cliente *clientes, int *numClientes) {
 
 //A função `novoCliente` recebe dois parâmetros: - `Cliente *clientes`: Um ponteiro para uma matriz de estruturas do tipo `Cliente`,
 //que contém informações sobre os clientes, como nome, CPF, saldo , tipo de conta e senha.
+
