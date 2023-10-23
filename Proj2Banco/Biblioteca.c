@@ -1,3 +1,14 @@
+void listarClientes(Cliente *clientes, int numClientes) {
+    int i;
+    for (i = 0; i < numClientes; i++) {
+        printf("Nome: %s\n", clientes[i].nome);
+        printf("CPF: %s\n", clientes[i].cpf);
+        printf("Tipo de conta: %s\n", clientes[i].tipoConta);
+        printf("Saldo: %.2lf\n", clientes[i].saldo);
+        printf("---------------\n");
+    }
+}
+// A função tem a finalidade de exibir as informações de todos os clientes cadastrados no sistema.
 
 void apagaCliente(Cliente *clientes, int *numClientes) {
     char cpf[12];
@@ -49,4 +60,3 @@ void novoCliente(Cliente *clientes, int *numClientes) {
 
 //A função `novoCliente` recebe dois parâmetros: - `Cliente *clientes`: Um ponteiro para uma matriz de estruturas do tipo `Cliente`,
 //que contém informações sobre os clientes, como nome, CPF, saldo , tipo de conta e senha.
-
