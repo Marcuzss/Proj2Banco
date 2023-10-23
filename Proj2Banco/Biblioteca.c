@@ -1,3 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "Biblioteca.h"
+
+void transferencia(Cliente *clientes, int numClientes) {
+    char cpfOrigem[12], senhaOrigem[20], cpfDestino[12];
+    double valor;
+
+    printf("Digite o CPF da conta de origem: ");
+    scanf(" %[^\n]", cpfOrigem);
+    printf("Digite a senha da conta de origem: ");
+    scanf(" %[^\n]", senhaOrigem);
+    printf("Digite o CPF da conta de destino: ");
+    scanf(" %[^\n]", cpfDestino);
+    printf("Digite o valor: ");
+    scanf("%lf", &valor);
+
+    int i, indexOrigem = -1, indexDestino = -1;
+    for (i = 0; i < numClientes; i++) {
+        if (strcmp(clientes[i].cpf, cpfOrigem) == 0 && strcmp(clientes[i].senha, senhaOrigem) == 0) {
+            indexOrigem = i;
+        }
+        if (strcmp(clientes[i].cpf, cpfDestino) == 0) {
+            indexDestino = i;
+        }
+    }
+
+    if (indexOrigem != -1 && indexDestino != -1) {
+        if (clientes[indexOrigem].saldo >= valor) {
+            clientes[indexOrigem].saldo -= valor;
+            clientes[indexDestino].saldo += valor;
+            printf("Transferência realizada com sucesso.\n");
+        } else {
+            printf("Saldo insuficiente na conta de origem.\n");
+        }
+    } else {
+        printf("CPF ou senha da conta de origem ou CPF da conta de destino incorretos.\n");
+    }
+}
+
+//Esta função recebe o CPF do destinatário e remetente e recebe o valor desejado a ser tranferido para a outra conta, e caso o CPF
+//esteja errado ou não tenha o valor na conta para fazer a tranferência exibe a mensagem de erro.
+
 void deposito(Cliente *clientes, int numClientes) {
     char cpf[12];
     double valor;
@@ -117,10 +161,7 @@ void debito(Cliente *clientes, int numClientes) {
 
 // Tem o objetivo de permitir que os clientes realizem retiradas de dinheiro (débitos) de suas contas, diferenciando os tipos de contas
 //e dependendo do tipo a função desconta um valor respectivo a sua variante de conta.
-
    
-
-
 void novoCliente(Cliente *clientes, int *numClientes) {
     if (*numClientes == 1000) {
         printf("Número máximo de clientes atingido.\n");
@@ -187,3 +228,4 @@ void extrato(Cliente *clientes, int numClientes) {
     printf("CPF ou senha incorretos.\n");
 }
 // Valida CPF e senha, salva extrato.
+
